@@ -40,18 +40,15 @@ const navItems = [
 const afterImages = [
   {
     src: "/assets/after-window-clean.png",
-    alt: "Doğal ışıklı stüdyo hamile portresi",
-    caption: "Doğal ışık ve zarif kumaş dokusu"
+    alt: "Doğal ışıklı stüdyo hamile portresi"
   },
   {
     src: "/assets/after-golden.png",
-    alt: "Sıcak ışıklı profesyonel hamile portresi",
-    caption: "Sıcak stüdyo ışığıyla sanat portresi"
+    alt: "Sıcak ışıklı profesyonel hamile portresi"
   },
   {
     src: "/assets/after-studio.png",
-    alt: "Sade stüdyo tarzında hamile portresi",
-    caption: "Sade, dergi hissinde stüdyo karesi"
+    alt: "Sade stüdyo tarzında hamile portresi"
   }
 ];
 
@@ -345,7 +342,6 @@ function BeforeAfterShowcase() {
             />
           </div>
           <div className="carousel-caption">
-            <span>{current.caption}</span>
             <div className="carousel-controls">
               <button type="button" onClick={() => goTo(-1)} aria-label="Önceki portre" title="Önceki">
                 <ChevronLeft aria-hidden="true" />

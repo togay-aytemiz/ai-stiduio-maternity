@@ -407,31 +407,27 @@ p {
 
 .carousel-caption {
   position: absolute;
-  left: 12px;
-  right: 12px;
-  bottom: 12px;
+  left: 50%;
+  bottom: 16px;
   z-index: 2;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 8px 8px 8px 12px;
+  justify-content: center;
+  padding: 6px;
   border-radius: var(--radius-button);
   background: rgba(245, 230, 211, 0.88);
   color: var(--ink);
-  font-size: 0.8125rem;
-  font-weight: 600;
-  line-height: 1.4;
+  transform: translateX(-50%);
 }
 
 .carousel-controls {
   display: flex;
-  gap: 4px;
+  gap: 8px;
 }
 
 .carousel-controls button {
-  width: 36px;
-  height: 36px;
+  width: 42px;
+  height: 42px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -956,6 +952,10 @@ p {
 
   .hero-copy {
     align-self: center;
+  }
+
+  .hero-proof {
+    display: none;
   }
 
   .showcase {
