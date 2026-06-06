@@ -3,6 +3,7 @@
 import Image from "next/image";
 import {
   Baby,
+  BookOpen,
   Camera,
   Check,
   ChevronDown,
@@ -74,6 +75,11 @@ const processSteps = [
     icon: UserCheck,
     title: "Sonuçları teslim ederiz",
     text: "En doğal kareleri seçer, kontrol eder ve dijital olarak teslim ederiz."
+  },
+  {
+    icon: BookOpen,
+    title: "İsteğe göre albüm de hazırlarız",
+    text: "Dilerseniz seçilen kareleri stüdyo kalitesinde fiziksel albüm olarak da hazırlayabiliriz."
   }
 ];
 
