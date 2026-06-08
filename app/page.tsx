@@ -11,6 +11,7 @@ import {
   ChevronRight,
   Clock3,
   XCircle,
+  Gift,
   Heart,
   Instagram,
   Mail,
@@ -31,6 +32,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 const AUTO_ADVANCE_MS = 5200;
 
 const navItems = [
+  { href: "#examples", label: "Örnekler" },
   { href: "#process", label: "Süreç" },
   { href: "#why-us", label: "Neden Biz?" },
   { href: "#pricing", label: "Paketler" },
@@ -40,99 +42,133 @@ const navItems = [
 const afterImages = [
   {
     src: "/assets/after-window-clean.png",
-    alt: "Doğal ışıklı stüdyo hamile portresi"
+    alt: "Doğal ışıklı stüdyo hamile portresi",
+    title: "Pencere ışığı"
   },
   {
     src: "/assets/after-golden.png",
-    alt: "Sıcak ışıklı profesyonel hamile portresi"
+    alt: "Sıcak ışıklı profesyonel hamile portresi",
+    title: "Sıcak ton"
   },
   {
     src: "/assets/after-studio.png",
-    alt: "Sade stüdyo tarzında hamile portresi"
+    alt: "Sade stüdyo tarzında hamile portresi",
+    title: "Sade stüdyo"
   }
 ];
 
 const processSteps = [
   {
     icon: Upload,
-    title: "Fotoğraflarınızı alırız",
-    text: "Selfie ve boydan fotoğrafınızı WhatsApp üzerinden alırız."
+    title: "Uygun fotoğrafları seçeriz",
+    text: "WhatsApp'tan gönderdiğiniz kareler arasından AI üretime en uygun referansları birlikte belirleriz."
   },
   {
     icon: Wand2,
-    title: "Tarzı birlikte belirleriz",
-    text: "Poz, ışık ve atmosferi fotoğrafçı gözüyle netleştiririz."
+    title: "Tarzı fotoğrafçı gözüyle kurarız",
+    text: "Poz, ışık, kıyafet hissi ve atmosferi hazır şablon gibi değil, size yakışacak şekilde tarif ederiz."
   },
   {
     icon: Sparkles,
     title: "AI'ı biz yönlendiririz",
-    text: "Referanslarımız ve fotoğrafçı notlarıyla AI'ı doğru tarza yönlendiririz."
+    text: "Yapay zekayı doğru referans, kompozisyon ve estetik notlarla çalıştırır; tek denemeye bırakmayız."
   },
   {
     icon: UserCheck,
-    title: "Sonuçları teslim ederiz",
-    text: "En doğal kareleri seçer, kontrol eder ve dijital olarak teslim ederiz."
+    title: "Çıktıları eler ve kontrol ederiz",
+    text: "Yüz, beden, ten tonu, ışık ve gerçeklik hissi fotoğrafçı gözüyle kontrol edildikten sonra seçilenleri teslim ederiz."
   },
   {
     icon: BookOpen,
-    title: "İsteğe göre albüm de hazırlarız",
-    text: "Dilerseniz seçilen kareleri stüdyo kalitesinde fiziksel albüm olarak da hazırlayabiliriz."
+    title: "İsterseniz albüme dönüştürürüz",
+    text: "Dijital teslimin yanında, beğendiğiniz kareleri baskı veya albüm haline getirme seçeneği de sunarız."
   }
 ];
 
 const whyItems = [
-  "Hazır prompt değil, fotoğrafçı yönlendirmesi",
-  "Sonuç eleme ve doğal görünüm kontrolü",
-  "Gizlilik hassasiyetiyle paylaşım",
-  "Yenidoğan çekimiyle uyumlu estetik"
+  "Doğru referans fotoğraf seçimi",
+  "Poz, ışık ve atmosfer yönlendirmesi",
+  "Doğal olmayan sonuçları eleme",
+  "Yüz, beden ve ten tonu kontrolü",
+  "İstenirse baskı ve albüm hazırlığı"
+];
+
+const styleExamples = [
+  {
+    src: "/assets/after-window-clean.png",
+    title: "Pencere ışığı",
+    text: "Yumuşak, doğal ve ev sıcaklığında portre hissi."
+  },
+  {
+    src: "/assets/after-golden.png",
+    title: "Editorial sıcak ton",
+    text: "Daha sanatsal, albüm kapağı gibi duran kareler."
+  },
+  {
+    src: "/assets/after-studio.png",
+    title: "Sade stüdyo",
+    text: "Dikkati anne adayına bırakan sakin kompozisyonlar."
+  },
+  {
+    src: "/assets/after-window-clean.png",
+    title: "Albüm uyumlu seri",
+    text: "Birbirini tamamlayan renk, ışık ve kadraj dili."
+  },
+  {
+    src: "/assets/after-golden.png",
+    title: "Romantik kumaş",
+    text: "Daha yumuşak, zarif ve hatıra değerinde bir atmosfer."
+  },
+  {
+    src: "/assets/after-studio.png",
+    title: "Minimal portre",
+    text: "Gösterişten uzak, temiz ve zamansız sonuçlar."
+  }
 ];
 
 const pricing = [
   {
+    icon: Baby,
+    title: "Yenidoğan Çekimiyle Hediye",
+    price: "Ücretsiz",
+    text: "Yenidoğan çekimi paketine ek ücret olmadan dahil edilir.",
+    items: [
+      "Fotoğrafçı yönlendirmeli AI üretim",
+      "Doğal görünüm ve seçim kontrolü",
+      "Dijital teslim, istenirse albüm opsiyonu"
+    ],
+    featured: true,
+    ctaLabel: "Hediyeli Paketi Sor",
+    whatsappMessage:
+      "Merhaba, yenidoğan çekimiyle hediye AI hamile portre hizmetiniz hakkında detay almak istiyorum."
+  },
+  {
     icon: Heart,
     title: "Sadece AI Portre",
     price: "1.500 TL'den başlayan",
-    text: "Yenidoğan çekimi olmadan dijital portre isteyenler için.",
-    items: ["Portre adedi pakete göre", "Fotoğrafçı kontrolü", "Dijital teslim"],
+    text: "Yenidoğan çekimi düşünmeden, mevcut fotoğraflarından dijital hamile portresi isteyenler için.",
+    items: ["Paket kapsamına göre portre adedi", "Fotoğrafçı yönlendirmesi ve eleme", "Dijital teslim"],
     featured: false,
+    ctaLabel: "Sadece AI Paketi Sor",
     whatsappMessage: "Merhaba, sadece AI hamile portre paketi hakkında bilgi almak istiyorum."
-  },
-  {
-    icon: Baby,
-    title: "Yenidoğan Paketiyle",
-    price: "Ücretsiz",
-    text: "Yenidoğan çekim paketiyle ücretsiz sunulur.",
-    items: [
-      "Portre adedi pakete göre belirlenir",
-      "Yenidoğan çekim ücreti için iletişime geçin",
-      "Detaylar WhatsApp'ta netleşir"
-    ],
-    featured: true,
-    whatsappMessage:
-      "Merhaba, yenidoğan çekim paketiyle ücretsiz AI hamile portre hizmeti hakkında bilgi almak istiyorum. Yenidoğan çekim ücretleri ve paket detayları için bilgi alabilir miyim?"
   }
 ];
 
 const faqItems = [
   {
-    question: "Fotoğraflarımı paylaşmak güvenli mi?",
+    question: "Fotoğraflarım iznim olmadan paylaşılır mı?",
     answer:
-      "Evet. Fotoğraflar yalnızca bu hizmet için değerlendirilir. Saklama, silme ve paylaşım tercihlerinizi baştan netleştiririz."
+      "Hayır. Gönderdiğiniz fotoğraflar ve hazırlanan sonuçlar izniniz olmadan sosyal medyada, portfolyoda veya üçüncü kişilerle paylaşılmaz. Saklama ve silme tercihinizi de baştan konuşuruz."
   },
   {
-    question: "Fotoğrafları kendim AI araçlarıyla yapamaz mıyım?",
+    question: "Bunu kendim AI araçlarıyla yapamaz mıyım?",
     answer:
-      "Yapabilirsiniz; farkımız fotoğrafçı gözüyle stil seçimi, doğru yönlendirme, sonuç eleme ve doğal görünüm kontrolüdür."
+      "Yapabilirsiniz. Buradaki fark, sürecin fotoğrafçı gözüyle yönetilmesi: doğru referans seçimi, tarz yönlendirmesi, sonuç eleme, doğal görünüm kontrolü ve gerekirse baskı/albüm hazırlığı."
   },
   {
-    question: "Sıradan AI çıktılarından farkı ne?",
+    question: "Ücretsiz hizmet tam olarak ne zaman geçerli?",
     answer:
-      "Tek deneme sonucu paylaşmıyoruz. Poz, ışık, ten tonu ve gerçeklik hissi kontrol edildikten sonra seçilen kareleri teslim ediyoruz."
-  },
-  {
-    question: "Yüzüm ve bedenim doğal görünür mü?",
-    answer:
-      "Amaç sizi bambaşka biri yapmak değil; hamilelik anınızı doğal, zarif ve fotoğrafçı estetiğiyle yorumlamak."
+      "Yenidoğan çekimi paketiyle birlikte bu hizmeti ek hediye olarak sunuyoruz. Çekim paketi, teslim adedi ve albüm gibi detayları WhatsApp görüşmesinde netleştiriyoruz."
   },
   {
     question: "Sonuçlar bana yüzde yüz benzer mi?",
@@ -140,17 +176,29 @@ const faqItems = [
       "AI üretimi olduğu için yüzde yüz birebir benzerlik garantisi veremeyiz. Fotoğraflarınızı referans alır, olabildiğince size yakın ve doğal görünen sonuçları seçeriz."
   },
   {
-    question: "Yenidoğan çekimiyle nasıl ücretsiz oluyor?",
+    question: "Kıyafet ve mahremiyet sınırlarını ben belirleyebilir miyim?",
     answer:
-      "Yenidoğan çekim paketiyle anlaşıldığında AI hamile portreleri ek hizmet olarak sunulur. Çekim ücretleri için WhatsApp'tan bilgi alabilirsiniz."
+      "Evet. Daha kapalı, daha sade, daha romantik veya daha minimal bir tarz isteyebilirsiniz. Kullanılmasını istemediğiniz kıyafet, poz veya görünüm sınırlarını baştan not alırız."
   },
   {
-    question: "Teslim süresi ne kadar?",
-    answer: "Paket kapsamına göre değişir; çoğu dijital teslim 24-72 saat aralığında planlanır."
+    question: "Beğenmezsem revize olur mu?",
+    answer:
+      "Paket kapsamına göre seçki ve küçük düzenleme/revizyon hakkı konuşulur. Amacımız her çıktıyı göndermek değil, doğal ve hatıra değerindeki kareleri ayıklayıp teslim etmektir."
+  },
+  {
+    question: "Bu gerçek hamile çekiminin yerine geçer mi?",
+    answer:
+      "Bu hizmet gerçek bir stüdyo veya dış çekimin birebir yerine geçmek zorunda değil; hızlı, zahmetsiz ve fotoğrafçı kürasyonlu dijital bir hamilelik hatırası alternatifi olarak düşünülür."
+  },
+  {
+    question: "Albüm veya baskı yapılabilir mi?",
+    answer:
+      "Evet. Beğendiğiniz kareler teknik olarak uygunsa dijital teslimin yanında baskı veya albüm seçeneği de hazırlanabilir."
   }
 ];
 
-const defaultWhatsAppMessage = "Merhaba, AI destekli hamile portre hizmetiniz hakkında bilgi almak istiyorum.";
+const defaultWhatsAppMessage =
+  "Merhaba, yenidoğan çekimiyle hediye AI hamile portre hizmetiniz hakkında detay almak istiyorum.";
 const whatsappPhone = (process.env.NEXT_PUBLIC_WHATSAPP_PHONE || "905541604811").replace(/\D/g, "");
 
 function getWhatsAppHref(message = defaultWhatsAppMessage) {
@@ -223,33 +271,35 @@ function Header() {
         </button>
       </div>
 
-      <div className={`mobile-menu ${open ? "is-open" : ""}`} aria-hidden={!open}>
-        <div className="mobile-menu-panel">
-          <div className="mobile-menu-top">
-            <span className="brand menu-brand">
-              <span>Maternal</span>
-              <span>Moments</span>
-            </span>
-            <button
-              className="icon-button"
-              type="button"
-              onClick={() => setOpen(false)}
-              aria-label="Menüyü kapat"
-              title="Kapat"
-            >
-              <X aria-hidden="true" />
-            </button>
+      {open ? (
+        <div className="mobile-menu is-open" aria-hidden={false}>
+          <div className="mobile-menu-panel">
+            <div className="mobile-menu-top">
+              <span className="brand menu-brand">
+                <span>Maternal</span>
+                <span>Moments</span>
+              </span>
+              <button
+                className="icon-button"
+                type="button"
+                onClick={() => setOpen(false)}
+                aria-label="Menüyü kapat"
+                title="Kapat"
+              >
+                <X aria-hidden="true" />
+              </button>
+            </div>
+            <nav aria-label="Mobil navigasyon">
+              {[...navItems, { href: "#contact", label: "İletişim" }].map((item) => (
+                <a key={item.href} href={item.href} onClick={() => setOpen(false)}>
+                  {item.label}
+                </a>
+              ))}
+            </nav>
+            <WhatsAppButton label="WhatsApp'tan Sor" />
           </div>
-          <nav aria-label="Mobil navigasyon">
-            {[...navItems, { href: "#contact", label: "İletişim" }].map((item) => (
-              <a key={item.href} href={item.href} onClick={() => setOpen(false)}>
-                {item.label}
-              </a>
-            ))}
-          </nav>
-          <WhatsAppButton label="WhatsApp'tan Bilgi Al" />
         </div>
-      </div>
+      ) : null}
     </header>
   );
 }
@@ -257,7 +307,6 @@ function Header() {
 function BeforeAfterShowcase() {
   const [active, setActive] = useState(0);
   const [direction, setDirection] = useState(1);
-  const [progressRun, setProgressRun] = useState(0);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const timerRef = useRef<number | null>(null);
 
@@ -273,11 +322,10 @@ function BeforeAfterShowcase() {
     timerRef.current = window.setTimeout(() => {
       setDirection(1);
       setActive((current) => (current + 1) % afterImages.length);
-      setProgressRun((current) => current + 1);
     }, AUTO_ADVANCE_MS);
 
     return clearAutoTimer;
-  }, [active, progressRun]);
+  }, [active]);
 
   const current = afterImages[active];
 
@@ -288,14 +336,12 @@ function BeforeAfterShowcase() {
       const next = currentIndex + offset;
       return (next + afterImages.length) % afterImages.length;
     });
-    setProgressRun((currentRun) => currentRun + 1);
   }
 
   function selectImage(index: number) {
     clearAutoTimer();
     setDirection(index >= active ? 1 : -1);
     setActive(index);
-    setProgressRun((currentRun) => currentRun + 1);
   }
 
   function handleTouchEnd(clientX: number) {
@@ -310,62 +356,62 @@ function BeforeAfterShowcase() {
     setTouchStart(null);
   }
 
+  const heroImageSrc = `${current.src}?hero=1`;
+
   return (
     <section className="showcase" aria-label="Önce ve sonra hamile portre örneği">
-      <div className="image-frame before-frame">
-        <div className="frame-label">Önce: evde çekilen fotoğraf</div>
-        <Image
-          src="/assets/before-selfie-v3.png"
-          alt="Evde telefonda çekilmiş hamilelik öncesi örnek fotoğraf"
-          width={302}
-          height={592}
-          priority
-          unoptimized
-        />
-      </div>
-
       <div className="after-column">
         <div
-          className="image-frame after-frame"
+          className="image-frame after-frame hero-stage"
           onTouchStart={(event) => setTouchStart(event.touches[0].clientX)}
           onTouchEnd={(event) => handleTouchEnd(event.changedTouches[0].clientX)}
         >
-          <div className="frame-label">Sonra: fotoğrafçı kürasyonlu AI portre</div>
+          <div className="frame-label">Hazırlanan portre</div>
           <div className={`after-image-layer ${direction > 0 ? "from-right" : "from-left"}`} key={current.src}>
             <Image
-              src={current.src}
+              src={heroImageSrc}
               alt={current.alt}
               fill
-              priority
+              preload
+              loading="eager"
               unoptimized
               sizes="(min-width: 900px) 380px, 100vw"
             />
           </div>
-          <div className="carousel-caption">
-            <div className="carousel-controls">
-              <button type="button" onClick={() => goTo(-1)} aria-label="Önceki portre" title="Önceki">
-                <ChevronLeft aria-hidden="true" />
-              </button>
-              <button type="button" onClick={() => goTo(1)} aria-label="Sonraki portre" title="Sonraki">
-                <ChevronRight aria-hidden="true" />
-              </button>
-            </div>
+          <div className="before-reference">
+            <div className="frame-label reference-label">Orijinal</div>
+            <Image
+              src="/assets/before-selfie-v3.png"
+              alt="Evde telefonda çekilmiş hamilelik öncesi örnek fotoğraf"
+              width={302}
+              height={592}
+              preload
+              loading="eager"
+              unoptimized
+            />
           </div>
         </div>
         <div className="carousel-footer">
-          <div className="carousel-progress" key={`${active}-${progressRun}`} aria-hidden="true">
-            <span />
-          </div>
-          <div className="dots" aria-label="Portreler">
+          <div className="style-selector" aria-label="Portre tarzları">
             {afterImages.map((item, index) => (
               <button
                 key={item.src}
                 type="button"
                 className={index === active ? "is-active" : ""}
                 onClick={() => selectImage(index)}
-                aria-label={`${index + 1}. portreyi göster`}
-              />
+                aria-pressed={index === active}
+              >
+                {item.title}
+              </button>
             ))}
+          </div>
+          <div className="carousel-controls">
+            <button type="button" onClick={() => goTo(-1)} aria-label="Önceki portre" title="Önceki">
+              <ChevronLeft aria-hidden="true" />
+            </button>
+            <button type="button" onClick={() => goTo(1)} aria-label="Sonraki portre" title="Sonraki">
+              <ChevronRight aria-hidden="true" />
+            </button>
           </div>
         </div>
       </div>
@@ -378,7 +424,8 @@ function ProcessSection() {
     <section className="section process-section" id="process">
       <div className="section-copy narrow">
         <p className="section-kicker">Nasıl çalışır?</p>
-        <h2>Fotoğrafları gönderin, biz özenle hazırlayalım.</h2>
+        <h2>Fotoğrafları gönderin, üretimi biz yönetelim.</h2>
+        <p>Burada amaç tek tıkla çıktı almak değil; hamilelik döneminizden doğal, seçilmiş ve teslim edilebilir kareler hazırlamak.</p>
       </div>
       <div className="process-list">
         {processSteps.map((step, index) => {
@@ -401,13 +448,69 @@ function ProcessSection() {
   );
 }
 
+function OfferNoteSection() {
+  return (
+    <section className="offer-note" aria-label="Yenidoğan çekimi görüşen ailelere özel hediye">
+      <div className="offer-note-copy">
+        <p className="section-kicker">Bu sayfayı neden gönderiyoruz?</p>
+        <h2>Fiyat alırken bilmeniz gereken ek bir hediye.</h2>
+        <p>
+          Yenidoğan çekimi için görüşen ailelere, mevcut hamilelik fotoğraflarından
+          fotoğrafçı kürasyonlu AI portreleri ücretsiz hazırlıyoruz. Önce örnekleri ve süreci inceleyin; ilginizi
+          çekerse detayları WhatsApp&apos;ta netleştiririz.
+        </p>
+      </div>
+      <div className="offer-card">
+        <Gift aria-hidden="true" />
+        <strong>Yenidoğan çekimine ek ücretsiz hizmet</strong>
+        <p>Normalde tek başına satın alınabilir; yenidoğan çekimi paketinde hediye olarak sunulur.</p>
+      </div>
+    </section>
+  );
+}
+
+function ExampleFlowSection() {
+  const flowingExamples = [...styleExamples, ...styleExamples];
+
+  return (
+    <section className="section examples-section" id="examples">
+      <div className="section-copy">
+        <p className="section-kicker">Örnek tarzlar</p>
+        <h2>Farklı ışık, poz ve atmosfer seçenekleri.</h2>
+        <p>
+          Fotoğrafçı yönlendirmesiyle aynı referanslardan farklı portre dilleri hazırlanabilir; sade, romantik,
+          sıcak tonlu veya albüm uyumlu seriler gibi.
+        </p>
+      </div>
+      <div className="example-flow" aria-label="AI hamile portre tarzları">
+        <div className="example-track">
+          {flowingExamples.map((item, index) => (
+            <article className="example-card" key={`${item.title}-${index}`}>
+              <div className="example-media">
+                <Image src={item.src} alt={`${item.title} hamile portre örneği`} fill unoptimized sizes="260px" />
+              </div>
+              <div>
+                <span>{item.title}</span>
+                <p>{item.text}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function WhyUsSection() {
   return (
     <section className="section why-section" id="why-us">
       <div className="why-copy">
-        <p className="section-kicker">Neden Maternal Moments?</p>
-        <h2>Sıradan AI çıktısı değil, fotoğrafçı onaylı hatıra.</h2>
-        <p>AI üretir; fotoğrafçı yönlendirir, seçer ve onaylar.</p>
+        <p className="section-kicker">En önemli fark</p>
+        <h2>Neden kendim AI aracıyla yapmayayım?</h2>
+        <p>
+          Yapabilirsiniz. Bizim farkımız, yapay zekayı tek başına bırakmamak: fotoğrafçı gözüyle yönlendirmek,
+          sonuçları elemek, doğal görünmeyen kareleri ayıklamak ve teslim edilebilir bir seçkiye dönüştürmek.
+        </p>
         <ul className="check-list">
           {whyItems.map((item) => (
             <li key={item}>
@@ -420,18 +523,10 @@ function WhyUsSection() {
 
       <div className="comparison" aria-label="AI aracı ve Maternal Moments karşılaştırması">
         <article>
-          <h3>Sıradan AI aracı</h3>
-          <div className="comparison-media">
-            <Image
-              src="/assets/after-studio.png"
-              alt="Kontrolsüz AI sonucu örneği"
-              fill
-              unoptimized
-              sizes="(min-width: 900px) 280px, 100vw"
-            />
-          </div>
+          <h3>Tek başına AI denemesi</h3>
+          <p className="comparison-intro">Hızlı olabilir ama sonuç çoğu zaman seçki, yönlendirme ve teslim standardı ister.</p>
           <ul className="comparison-list negative-list">
-            {["Tek deneme hissi", "Tutarsız ışık", "Kişisel yönlendirme yok"].map((item) => (
+            {["Referans fotoğraf seçimi size kalır", "Poz, ışık ve tarz tutarsız olabilir", "Her sonuç teslim edilebilir kalitede olmaz"].map((item) => (
               <li key={item}>
                 <XCircle aria-hidden="true" />
                 <span>{item}</span>
@@ -440,18 +535,10 @@ function WhyUsSection() {
           </ul>
         </article>
         <article className="preferred">
-          <h3>Maternal Moments</h3>
-          <div className="comparison-media">
-            <Image
-              src="/assets/after-golden.png"
-              alt="Fotoğrafçı onaylı hamile portresi"
-              fill
-              unoptimized
-              sizes="(min-width: 900px) 280px, 100vw"
-            />
-          </div>
+          <h3>Fotoğrafçı yönlendirmeli süreç</h3>
+          <p className="comparison-intro">AI üretir; fotoğrafçı yönlendirir, seçer, kontrol eder ve gerekiyorsa son dokunuşu yapar.</p>
           <ul className="comparison-list positive-list">
-            {["Fotoğrafçı seçimi", "Doğal görünüm kontrolü", "Baskıya uygun teslim"].map((item) => (
+            {["Size uygun tarz ve kompozisyon kurulur", "Doğal görünmeyen kareler ayıklanır", "Dijital teslim ve albüm opsiyonu planlanır"].map((item) => (
               <li key={item}>
                 <Check aria-hidden="true" />
                 <span>{item}</span>
@@ -469,8 +556,8 @@ function PricingSection() {
     <section className="section pricing-section" id="pricing">
       <div className="section-copy">
         <p className="section-kicker">Paketler</p>
-        <h2>Yenidoğan çekimiyle ücretsiz, tek başına da alınabilir.</h2>
-        <p>Yenidoğan çekim ücretleri ve paket detayları için WhatsApp&apos;tan bilgi alın.</p>
+        <h2>Asıl teklif hediye; isteyen tek başına da alabilir.</h2>
+        <p>AI hamile portreleri yenidoğan çekimi paketinde ek hediye olarak sunulur. Sadece portre isteyenler için ayrı paket seçeneği de bulunur.</p>
       </div>
       <div className="pricing-grid">
         {pricing.map((plan) => {
@@ -489,7 +576,7 @@ function PricingSection() {
                   </li>
                 ))}
               </ul>
-              <WhatsAppButton label="Teklif Al" message={plan.whatsappMessage} />
+              <WhatsAppButton label={plan.ctaLabel} message={plan.whatsappMessage} />
             </article>
           );
         })}
@@ -503,7 +590,7 @@ function TrustSection() {
     <section className="trust-band" aria-label="Hizmet güven detayları">
       <div>
         <ShieldCheck aria-hidden="true" />
-        <span>Gizlilik hassasiyeti</span>
+        <span>İzinsiz paylaşım yok</span>
       </div>
       <div>
         <Clock3 aria-hidden="true" />
@@ -511,11 +598,11 @@ function TrustSection() {
       </div>
       <div>
         <Camera aria-hidden="true" />
-        <span>Fotoğrafçı kontrolü</span>
+        <span>Fotoğrafçı seçimi</span>
       </div>
       <div>
         <Sparkles aria-hidden="true" />
-        <span>İnsan kontrollü AI üretimi</span>
+        <span>Doğal görünüm kontrolü</span>
       </div>
     </section>
   );
@@ -564,7 +651,7 @@ function Footer() {
             <span>Maternal</span>
             <span>Moments</span>
           </a>
-          <p>Hamileliğinizin en özel dönemini fotoğrafçı gözü ve dijital zanaatla saklıyoruz.</p>
+          <p>Yenidoğan çekimi görüşmelerine ek, fotoğrafçı kürasyonlu AI hamile portreleri hazırlıyoruz.</p>
           <div className="socials" aria-label="Sosyal bağlantılar">
             <a href="#" aria-label="Instagram" title="Instagram">
               <Instagram aria-hidden="true" />
@@ -605,7 +692,7 @@ function Footer() {
 
 export default function Home() {
   const heroProof = useMemo(
-    () => ["Güvenli paylaşım", "24-72 saat teslim planı", "Fotoğrafçı kontrolü"],
+    () => ["AI destekli hediye", "Fotoğrafçı seçimi", "İzinsiz paylaşım yok"],
     []
   );
 
@@ -615,16 +702,15 @@ export default function Home() {
       <section className="hero-section">
         <div className="hero-copy">
           <h1>
-            Fotoğraflarınızdan <span className="hero-highlight">AI destekli</span> hamile portreleri.
+            Yenidoğan çekimine <span className="hero-highlight">AI hamilelik portreniz de dahil.</span>
           </h1>
           <p>
-            Paylaştığınız selfie, boydan fotoğraf ya da mevcut kareleri; istediğiniz yerden, zahmetsizce ve hızlıca
-            zarif hamile portrelerine dönüştürüyoruz.
+            Fotoğraflarınızı gönderin; AI üretimi fotoğrafçı gözüyle hazırlayıp hediye edelim.
           </p>
           <div className="hero-actions">
-            <WhatsAppButton label="WhatsApp'tan Bilgi Al" />
-            <a className="button button-secondary" href="#process">
-              Süreci Gör
+            <WhatsAppButton label="WhatsApp'tan Detay Al" />
+            <a className="button button-secondary" href="#examples">
+              Örnekleri Gör
             </a>
           </div>
           <ul className="hero-proof">
@@ -639,8 +725,10 @@ export default function Home() {
         <BeforeAfterShowcase />
       </section>
       <TrustSection />
-      <ProcessSection />
+      <OfferNoteSection />
+      <ExampleFlowSection />
       <WhyUsSection />
+      <ProcessSection />
       <PricingSection />
       <FaqSection />
       <Footer />

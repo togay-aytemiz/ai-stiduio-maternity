@@ -17,13 +17,13 @@ const plexSans = IBM_Plex_Sans({
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
-  title: "Maternal Moments | AI Destekli Hamile Portreleri",
+  title: "Maternal Moments | Yenidoğan Çekimine Özel AI Hamile Portreleri",
   description:
-    "Fotoğrafçı gözüyle seçilen, AI destekli ve baskıya hazır profesyonel hamile portreleri.",
+    "Yenidoğan çekimi görüşmelerine ek, fotoğrafçı gözüyle yönlendirilen ve seçilen AI destekli hamile portreleri.",
   openGraph: {
     title: "Maternal Moments",
     description:
-      "Evde çekilen fotoğraflardan fotoğrafçı dokunuşlu hamile portreleri.",
+      "Yenidoğan çekimine özel fotoğrafçı kürasyonlu AI hamile portreleri.",
     type: "website",
     images: ["/assets/after-window-clean.png"]
   }
